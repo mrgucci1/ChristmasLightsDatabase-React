@@ -18,6 +18,10 @@ export default function App() {
           style={styles.logo}
           source={require('./images/logo_app.png')}
         />
+        <Text style={styles.headerText}>Christmas Lights Database</Text>
+      </View>
+      <View style={styles.main}>
+
       </View>
     </View>
   );
@@ -25,20 +29,33 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#4F703A',
-    width: '100',
-    height: '100',
-    flexDirection: 'column'
+    backgroundColor: 'yellow',
+    width: '100%',
+    height: '100%'
   },
   topNav: {
     backgroundColor: '#4F703A',
-    width: '100',
-    height: '20'
+    width: '100%',
+    height: '20%',
+    alignItems: 'center',
+    flexDirection: 'row',
+    
   },
   logo: {
     backgroundColor: '#4F703A',
-    width: '100',
-    height: '20',
-    border: '1px red solid'
+    width: 100,
+    height: 100,
+    marginLeft: 10
   },
+  headerText: {
+    color: 'red',
+    fontWeight: 'bold',
+    fontSize: 20 
+  },
+  main: {
+    backgroundColor: 'blue',
+    width: '100%',
+    height: '80%',
+  }
+  
 });
