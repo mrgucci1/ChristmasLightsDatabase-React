@@ -2,15 +2,22 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import {db, auth} from './Fire'
+import { useFonts, Lora_400Regular  } from '@expo-google-fonts/lora';
+import {  AbrilFatface_400Regular  } from '@expo-google-fonts/abril-fatface';
 export default function App() {
   const[name, setName] = useState('');
-
+  let [fontsLoaded] = useFonts({
+    Lora_400Regular,
+    AbrilFatface_400Regular
+  });
   useEffect(() => {
     db.collection('user').doc("01").get().then(doc => {
       setName(doc.data().name);
     })
   });
-  
+  if (!fontsLoaded) {
+    return <Text>Loading</Text>;
+  } else {
   return (
     <View style={styles.container}>
       <View style={styles.topNav}>
@@ -21,10 +28,11 @@ export default function App() {
         <Text style={styles.headerText}>Christmas Lights Database</Text>
       </View>
       <View style={styles.main}>
-
+        <View style={styles.filterView}></View>
       </View>
     </View>
   );
+}
 }
 
 const styles = StyleSheet.create({
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   topNav: {
-    backgroundColor: '#4F703A',
+    backgroundColor: '#044f35',
     width: '100%',
     height: '20%',
     alignItems: 'center',
@@ -48,14 +56,20 @@ const styles = StyleSheet.create({
     marginLeft: 10
   },
   headerText: {
-    color: 'red',
-    fontWeight: 'bold',
-    fontSize: 20 
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'AbrilFatface_400Regular', 
+    
   },
   main: {
     backgroundColor: 'blue',
     width: '100%',
     height: '80%',
+  },
+  filterView: {
+    backgroundColor: 'red',
+    width: '100%',
+    height: '10%',
   }
   
 });
